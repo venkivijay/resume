@@ -1,0 +1,25 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: npm install
+      - name: Compile
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+      - name: Copy the PDF to dist/
+        run: npm run dist
+      - name: Commit dist/ to gh-pages branch
+        uses: maxheld83/ghpages@v0.3.0
+        env:
+          BUILD_DIR: dist/
+          GH_PAT: ${{ secrets.GH_PAT }}

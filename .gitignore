@@ -1,0 +1,13 @@
+# Auxiliary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# Output PDF
+*.pdf
+
+# Others
+node_modules/

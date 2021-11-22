@@ -1,0 +1,29 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "description": "Venkatesh SM's resume",
+  "private": true,
+  "scripts": {
+    "clean": "latexmk -C",
+    "build": "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex",
+    "dist": "mkdir -p dist && cp output/main.pdf dist/Venkatesh-Developer-Resume.pdf",
+    "predeploy": "npm run build && npm run dist",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [
+    "resume latex tex"
+  ],
+  "author": "Venki Vijay",
+  "license": "LLPL-1.3c",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venkivijay/resume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/venkivijay/resume/issues"
+  },
+  "homepage": "https://github.com/venkivijay/resume#readme",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
