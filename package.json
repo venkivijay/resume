@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "latexmk -C",
     "build": "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex",
-    "dist": "mkdir -p dist && cp main.pdf dist/Venkatesh-Developer-Resume.pdf",
+    "dist": "mkdir -p dist && cp public/* main.pdf dist/ && mv dist/main.pdf dist/Venkatesh-Developer-Resume.pdf",
     "predeploy": "npm run build && npm run dist",
     "deploy": "gh-pages -d dist"
   },
