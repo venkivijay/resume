@@ -101,10 +101,10 @@
 %		param 1: time-frame
 %		param 2: title (optional)
 %		param 3: customer, college, etc,. (optional)
+%       param 4: grade, percentage
 %-------------------------------------------------------------------
 
-\newcommand{\rmetaevent}[3] {
-	\vspace{-12pt}
+\newcommand{\rmetaevent}[4] {
 	\textcolor{maincol} {\rtext{\textbf{\begin{flushleft}#1\end{flushleft}}}}
 
 	\ifthenelse{\isempty{#2}}{}{
@@ -112,7 +112,11 @@
 	}
 
 	\ifthenelse{\isempty{#3}}{}{
-		\rtext{{ \textcolor{darkcol} {#3} }}\\
+		\rtext{{ \textcolor{darkcol} {#3} }}
+	}
+
+	\ifthenelse{\isempty{#4}}{}{
+		\textcolor{darkcol} {\rtext{\textbf{#4}} }
 	}
 }
 
@@ -120,10 +124,13 @@
 %	QR CODE
 % 	Renders a qrcode image (centered, relative to the parentwidth)
 % 		param 1: percent width, from 0 to 1
+%       param 2: QR image name
+%		param 3: Text below QR
 %-------------------------------------------------------------------
 
-\newcommand{\cvqrcode}[1] {
+\newcommand{\cvqrcode}[3] {
 	\begin{center}
-		\includegraphics[width={#1}\mpwidth]{qrcode}
+		\includegraphics[width={#1}\mpwidth]{#2}\\
+		\textbf{#3}
 	\end{center}
 }
