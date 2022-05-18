@@ -19,7 +19,7 @@ jobs:
       - name: Copy the PDF to dist/
         run: npm run dist
       - name: Commit dist/ to gh-pages branch
-        uses: maxheld83/ghpages@v0.3.0
-        env:
-          BUILD_DIR: dist/
-          GH_PAT: ${{ secrets.GH_PAT }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GH_PAT }}
+          publish_dir: "./dist"
