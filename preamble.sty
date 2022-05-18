@@ -55,6 +55,11 @@
     \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} \href{#4}{\textcolor{#5}{#3}}
 }
 
+% icon with external hyperlink
+\newcommand{\iconhrefexternal}[5]{
+    \href{#4}{\textcolor{#5}{#3}} \icon{#1}{#2}{#5}
+}
+
 % icon with email hyperlink
 \newcommand{\iconemail}[5]{ 						
     \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} \href{mailto:#4}{\textcolor{#5}{#3}}
