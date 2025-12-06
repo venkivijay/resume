@@ -11,12 +11,12 @@
 %-------------------------------------------------------------------
 %	LOGIC
 %-------------------------------------------------------------------
-\usepackage{xstring, xifthen}
+\usepackage{xifthen}
 
 %-------------------------------------------------------------------
 %	FONT BASICS
 %-------------------------------------------------------------------
-\usepackage[default]{raleway}
+\IfFileExists{raleway.sty}{\usepackage[default]{raleway}}{\usepackage{lmodern}}
 \renewcommand*\familydefault{\sfdefault} 	
 \usepackage[T1]{fontenc}
 \usepackage{moresize}
@@ -69,7 +69,7 @@
 %	PAGE LAYOUT  DEFINITIONS
 %-------------------------------------------------------------------
 
-% \usepackage{showframe} % debug-only
+\usepackage{showframe} % debug-only
 \usepackage{paracol}
 \usepackage[a4paper]{geometry}
 \geometry{top=1cm, bottom=1cm, left=1cm, right=1cm}
@@ -91,7 +91,7 @@
 
 \usepackage{graphicx}	
 \usepackage{tikz}				
-\usetikzlibrary{shapes, backgrounds,mindmap, trees}
+\usetikzlibrary{shapes, backgrounds, mindmap, trees}
 
 %-------------------------------------------------------------------
 %	Color DEFINITIONS
