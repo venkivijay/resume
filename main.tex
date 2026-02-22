@@ -1,44 +1,161 @@
-%============================================================================%
-%	DOCUMENT DEFINITIONS
-%============================================================================%
-\documentclass[10pt,a4paper]{article}
+%-------------------------
+% Resume in Latex
+% Author : Venkatesh SM
+%------------------------
+
+% supports 10, 11, 12pt font sizes
+% letterpaper = 8.5in x 11in
+\documentclass[letterpaper,11pt]{article}
 
 %============================================================================%
-%	CUSTOM PACKAGES
+%	PACKAGE IMPORTS
 %============================================================================%
-\usepackage{preamble}
-\usepackage{resumeCommands}
+% set margins
+\usepackage[
+    left=0.5in,
+    right=0.5in,
+    top=0.4in,
+    bottom=0.4in,
+]{geometry}
+\usepackage{latexsym}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{hyphenat}
+\usepackage{fontawesome}
+\usepackage{enumitem}
+\input{glyphtounicode}
+\usepackage{parskip}
+\usepackage{etoolbox}  % for conditional logic
+\usepackage{csquotes}
+\usepackage{graphicx}
 
-\hypersetup{
-    pdftitle={Resume - Venkatesh SM (Developer/DevOps Engineer)},
-    pdfauthor={Venkatesh SM (VenkiVijay)},
-    pdfcreator={Venkatesh SM (VenkiVijay)},
-    pdfkeywords={Resume} {DevOps Engineer} {Developer} {Venkatesh SM} {VenkiVijay},
-    pdfnewwindow=true,
+%============================================================================%
+%	CONFIGURATION IMPORT
+%============================================================================%
+\input{config.tex}
+
+%============================================================================%
+%	PAGE SETUP
+%============================================================================%
+\pagestyle{fancy}
+
+% clear all header and footer fields
+\fancyhf{}
+\fancyfoot{}
+% remove lines between header/footer
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+
+% don't stretch text to fill the entire line
+\raggedbottom
+\raggedright
+% remove horizontal padding from table cells
+\setlength{\tabcolsep}{0in}
+
+%============================================================================%
+%	FORMATTING DEFINITIONS
+%============================================================================%
+% Section heading formatting
+\titleformat{\section}{
+  \scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% Set spacing
+% set vertical spacing between sections
+\titlespacing*{\section}
+{0pt} % left indent
+{3pt} % spacing above
+{3pt} % spacing below
+
+\linespread{1.01}  % line spacing
+\setlength{\parskip}{0pt} % paragraph spacing
+
+% bullet list spacing
+\setlist[itemize]{itemsep=0pt} % vertical spacing between bullets
+
+% set bullet list symbol formatting
+\setlist[itemize,1]{label=$\vcenter{\hbox{\tiny$\bullet$}}$} 
+\setlist[itemize,2]{label=$\vcenter{\hbox{\tiny$\bullet$}}$}
+\setlist[itemize,3]{label=$\vcenter{\hbox{\tiny$\circ$}}$}
+
+%============================================================================%
+%	CUSTOM COMMANDS
+%============================================================================%
+\newcommand{\bulletItem}[1]{
+  \item\small{
+    {#1}
+  }
+}
+
+% company name -- location
+\newcommand{\companyNameAndLocationHeading}[2]{
+  \item 
+    \begin{tabular*}{1.0\textwidth}[b]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2
+    \end{tabular*}
+}
+
+% job title -- date
+\newcommand{\titleAndDateHeading}[2]{
+    \item
+    \begin{tabular*}{1.0\textwidth}[b]{l@{\extracolsep{\fill}}r}
+      {\bfseries\itshape\small #1} & \itshape\small #2
+    \end{tabular*}
+}
+
+% project name -- date
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.0\textwidth}[b]{l@{\extracolsep{\fill}}r}
+      \small#1 & #2
+    \end{tabular*}
+}
+
+\newcommand{\sectionListStart}{\begin{itemize}[leftmargin=0pt, label={}]}
+\newcommand{\sectionListEnd}{\end{itemize}}
+
+\newcommand{\outerBulletListStart}{\begin{itemize}[leftmargin=\bulletIndent]}
+\newcommand{\outerBulletListEnd}{\end{itemize}\vspace{\vspaceAfterBullets}}
+
+\newcommand{\innerBulletListStart}{\begin{itemize}[leftmargin=\bulletIndent]}
+\newcommand{\innerBulletListEnd}{\end{itemize}}
+
+% blue colored hyperlinks
+\newcommand{\bref}[2]{\href{#1}{\color{blue}{#2}}}
+
+% QR code
+\newcommand{\cvqrcode}[3] {
+  \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}\\
+    \emph{#3}
+  \end{center}
 }
 
 %============================================================================%
 %	DOCUMENT CONTENT
 %============================================================================%
 \begin{document}
-\columnratio{0.3}
-\setlength{\columnsep}{2.2em}
-\setlength{\columnseprule}{4pt}
-\colseprulecolor{lightcol}
-\begin{paracol}{2}
 
-%============================================================================%
-%	LEFT COLUMN
-%============================================================================%
-\begin{leftcolumn}
-\import{./}{leftColumn.tex}
-\end{leftcolumn}
+% Import modular sections
+\input{modules/contact.tex}
+\input{modules/objective.tex}
+\input{modules/experience.tex}
+\input{modules/education.tex}
+\input{modules/skills.tex}
+\input{modules/projects.tex}
+\input{modules/qrcodes.tex}
 
-%============================================================================%
-%	RIGHT COLUMN
-%============================================================================%
-\begin{rightcolumn}
-\import{./}{rightColumn.tex}
-\end{rightcolumn}
-\end{paracol}
+
 \end{document}
