@@ -7,19 +7,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 12.x
+          node-version: ">=24.13.0"
       - run: npm install
-      - name: Compile
-        uses: xu-cheng/latex-action@v2
+      - name: Compile latex
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
-      - name: Copy the PDF to dist/
+      - name: Copy PDF to dist
         run: npm run dist
       - name: Commit dist/ to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.GH_PAT }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: "./dist"
